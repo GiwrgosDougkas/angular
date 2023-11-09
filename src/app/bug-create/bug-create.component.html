@@ -1,0 +1,26 @@
+<div class="mat-elevation-z8">
+  <button [routerLink]="'/bugs'" class="m-3">back</button>
+
+  <form [formGroup]="myForm" (submit)="formSubmit(myForm)" [class.was-validated]="myForm.invalid && myForm.dirty">
+    <!-- title-->
+    <div class="m-3">
+      <div>Title</div>
+      <input [formControlName]="'title'" />
+      <div *ngIf="myForm.get('title')?.invalid && myForm.get('title')?.dirty">
+        Field is required
+      </div>
+    </div>
+
+    <!-- description-->
+    <div class="m-3">
+      <div>Description</div>
+      <textarea [formControlName]="'description'" ></textarea>
+      <div *ngIf="myForm.get('description')?.invalid && myForm.get('description')?.dirty">
+        Field is required
+      </div>
+    </div>
+
+    <button class="m-3" type="submit">OK</button>
+  </form>
+</div>
+
