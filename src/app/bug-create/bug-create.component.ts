@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {NewBugMatSelectOption} from "../interfaces/new-bug-mat-select-option";
 
 @Component({
   selector: 'app-bug-create',
@@ -14,7 +15,15 @@ export class BugCreateComponent implements OnInit {
     reporter: new FormControl('', Validators.required),
     status: new FormControl('')
   });
-  constructor() { }
+
+  matSelectOption: NewBugMatSelectOption = {
+    priority: ['Minor', 'Major', 'Critical'],
+    reporter: ['QA', 'PO', 'DEV'],
+    status: ['For Review', 'Done', 'Rejected']
+  };
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }
