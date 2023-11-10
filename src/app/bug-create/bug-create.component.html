@@ -52,7 +52,7 @@
   <div class="m-3">
     <mat-form-field>
       <mat-label>Status</mat-label>
-      <mat-select [formControlName]="'reporter'">
+      <mat-select [formControlName]="'status'">
         <mat-option *ngFor="let element of matSelectOption.status" [value]="element">
           {{element}}
         </mat-option>

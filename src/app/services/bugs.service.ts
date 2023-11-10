@@ -25,4 +25,8 @@ export class BugsService {
   deleteById(id: string): Observable<any> {
     return this.http.delete(this.deleteUrl + id);
   }
+
+  createBug(dto: BugDto): Observable<any> {
+    return this.http.post<BugDto>(this.main + this.all, dto);
+  }
 }

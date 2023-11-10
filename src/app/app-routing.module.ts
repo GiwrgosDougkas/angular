@@ -5,7 +5,7 @@ import {BugCreateComponent} from "./bug-create/bug-create.component";
 
 const routes: Routes = [
   { path: 'bugs', component: BugsComponent },
-  { path: 'create', component: BugCreateComponent },
+  { path: 'create/:id', component: BugCreateComponent },
 
 ];
 

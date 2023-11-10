@@ -55,10 +55,8 @@ export class BugsComponent implements OnInit {
             console.log(err);
           },
           complete: () => {
-            setTimeout(()=>{
               this.dataSource.data.splice(this.dataSource.data.indexOf(element), 1);
               this.dataSource._updateChangeSubscription();
-            })
           }
         });
     });
