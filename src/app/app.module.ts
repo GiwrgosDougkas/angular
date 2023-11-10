@@ -12,6 +12,9 @@ import { BugCreateComponent } from './bug-create/bug-create.component';
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -24,11 +27,14 @@ import {MatSelectModule} from "@angular/material/select";
     AppRoutingModule,
     HttpClientModule,
     MatTableModule,
+    MatInputModule,
+    MatButtonModule,
     NoopAnimationsModule,
     MatCheckboxModule,
     RouterModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

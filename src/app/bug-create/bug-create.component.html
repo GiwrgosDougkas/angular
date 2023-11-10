@@ -1,26 +1,70 @@
 <div class="mat-elevation-z8">
-  <button [routerLink]="'/bugs'" class="m-3">back</button>
-
-  <form [formGroup]="myForm" (submit)="formSubmit(myForm)" [class.was-validated]="myForm.invalid && myForm.dirty">
-    <!-- title-->
-    <div class="m-3">
-      <div>Title</div>
-      <input [formControlName]="'title'" />
-      <div *ngIf="myForm.get('title')?.invalid && myForm.get('title')?.dirty">
-        Field is required
-      </div>
-    </div>
-
-    <!-- description-->
-    <div class="m-3">
-      <div>Description</div>
-      <textarea [formControlName]="'description'" ></textarea>
-      <div *ngIf="myForm.get('description')?.invalid && myForm.get('description')?.dirty">
-        Field is required
-      </div>
-    </div>
-
-    <button class="m-3" type="submit">OK</button>
-  </form>
+  <button [routerLink]="'/bugs'" class="m-3 toolbar-button" [color]="'primary'" mat-raised-button>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
 </div>
+
+<form [formGroup]="myForm" (submit)="formSubmit(myForm)" [class.was-validated]="myForm.invalid && myForm.dirty">
+  <!-- title-->
+  <div class="m-3">
+    <mat-form-field class="example-full-width">
+      <mat-label>Title</mat-label>
+      <input [formControlName]="'title'" matInput>
+      <mat-error *ngIf="myForm.get('title')?.invalid && myForm.get('title')?.dirty">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- description-->
+  <div class="m-3">
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea [formControlName]="'description'" matInput></textarea>
+    </mat-form-field>
+  </div>
+
+  <!-- priority-->
+  <div class="m-3">
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <mat-select [formControlName]="'priority'">
+        <mat-option value="clear">Clear</mat-option>
+        <mat-option value="valid">Valid option</mat-option>
+        <mat-option value="invalid">Invalid option</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Reporter -->
+  <div class="m-3">
+    <mat-form-field>
+      <mat-label>Reporter</mat-label>
+      <mat-select [formControlName]="'reporter'">
+        <mat-option value="clear">Clear</mat-option>
+        <mat-option value="valid">Valid option</mat-option>
+        <mat-option value="invalid">Invalid option</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Status -->
+  <div class="m-3">
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select [formControlName]="'reporter'">
+        <mat-option value="clear">Clear</mat-option>
+        <mat-option value="valid">Valid option</mat-option>
+        <mat-option value="invalid">Invalid option</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div class="m-3">
+    <button type="Submit" class="toolbar-button" [color]="'primary'" mat-raised-button>
+      <mat-icon>done</mat-icon>
+    </button>
+  </div>
+</form>
 

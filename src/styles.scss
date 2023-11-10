@@ -1,4 +1,13 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import '~@angular/material/theming';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+form {
+  position: absolute!important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
