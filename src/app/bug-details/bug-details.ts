@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NewBugMatSelectOption} from "../interfaces/new-bug-mat-select-option";
 import {BugsService} from "../services/bugs.service";
@@ -25,9 +25,9 @@ export class BugDetails implements OnInit {
     status: ['For Review', 'Done', 'Rejected']
   };
 
-  private bugId!:string;
+  private bugId!: string;
   private isEditing = false;
-  bug: BugDto = new BugDto("","","","","","","",[]);
+  bug: BugDto = new BugDto("", "", "", "", "", "", "", []);
 
   constructor(private bugsService: BugsService, private route: ActivatedRoute, private router: Router) {
     this.bugId = this.route.snapshot.queryParams['id'];
@@ -35,15 +35,15 @@ export class BugDetails implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.isEditing){
-      this.bugsService.getById(this.bugId).subscribe(resp=>{
+    if (this.isEditing) {
+      this.bugsService.getById(this.bugId).subscribe(resp => {
         this.bug = resp
       })
     }
   }
 
-  formSubmit(myForm: FormGroup){
-    if(myForm.invalid){
+  formSubmit(myForm: FormGroup) {
+    if (myForm.invalid) {
       return;
     }
     myForm.disable();
@@ -61,7 +61,7 @@ export class BugDetails implements OnInit {
       second: 'numeric',
     };
     const formattedDate = new Date().toLocaleString('en-US', options);
-    if(this.isEditing){
+    if (this.isEditing) {
       this.bugsService.editBug(this.bug).subscribe(this.responseObserver);
       return;
     }
@@ -70,8 +70,9 @@ export class BugDetails implements OnInit {
   }
 
   private responseObserver = {
-    next:() => {},
-    error:(err: any) => {
+    next: () => {
+    },
+    error: (err: any) => {
       console.log(err);
     },
     complete: () => {

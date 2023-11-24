@@ -25,19 +25,19 @@ export class BugsComponent implements OnInit {
     {def: 'created', label: 'Date created'},
     {def: 'status', label: 'Status'}
   ];
-  columns:string[] = new Array<string>();
+  columns: string[] = new Array<string>();
   selection = new SelectionModel<BugDto>(true);
   dataSource = new MatTableDataSource<BugDto>([]);
 
-  constructor(private bugsService : BugsService, private router: Router) {
-    this.columnDefinitions.forEach(e=>{
+  constructor(private bugsService: BugsService, private router: Router) {
+    this.columnDefinitions.forEach(e => {
       this.columns.push(e.def)
     })
   }
 
   ngOnInit(): void {
     this.bugsService.getAll().subscribe({
-      next: (value) =>{
+      next: (value) => {
         this.dataSource.data = value;
         this.bugsService.nextCreatedId = this.dataSource.data.length + 1
       },
@@ -49,26 +49,26 @@ export class BugsComponent implements OnInit {
 
   deleteBug() {
     const selectedLength = this.selection.selected.length
-    if(selectedLength == 0) {
+    if (selectedLength == 0) {
       return;
     }
-    this.selection.selected.forEach(element=>{
+    this.selection.selected.forEach(element => {
       this.bugsService.deleteById(element.id).subscribe({
-          next:() => {},
-          error:(err) => {
-            console.log(err);
-          },
-          complete: () => {
-              this.dataSource.data.splice(this.dataSource.data.indexOf(element), 1);
-              this.dataSource._updateChangeSubscription();
-          }
-        });
+        next: () => {
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          this.dataSource.data.splice(this.dataSource.data.indexOf(element), 1);
+          this.dataSource._updateChangeSubscription();
+        }
+      });
     });
   }
 
-  isAllSelected(): boolean{
-    const numSelected =
-      this.selection.selected.length;
+  isAllSelected(): boolean {
+    const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data ? this.dataSource.data.length : 0;
     return numSelected === numRows;
   }
@@ -79,9 +79,9 @@ export class BugsComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  redirectToEdit(){
-    if (this.selection.selected.length == 1){
-      this.router.navigate(['create/' ], {
+  redirectToEdit() {
+    if (this.selection.selected.length == 1) {
+      this.router.navigate(['create/'], {
         queryParams: {
           id: this.selection.selected[0].id,
         }
