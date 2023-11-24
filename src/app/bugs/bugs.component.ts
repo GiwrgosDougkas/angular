@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {BugsService} from "../services/bugs.service";
 import {BugDto} from "../DTOs/bug-dto";
 import {SimpleDto} from "../DTOs/simple-dto";
@@ -6,6 +6,7 @@ import {ColumnDefinitions} from "../interfaces/column-definitions";
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
+import {MatSort, Sort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-bugs',
@@ -13,6 +14,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./bugs.component.scss']
 })
 export class BugsComponent implements OnInit {
+  @ViewChild(MatSort)
+  sort: MatSort | undefined;
 
   columnDefinitions: ColumnDefinitions[] = [
     {def: 'select', label: 'select'},
@@ -85,4 +88,11 @@ export class BugsComponent implements OnInit {
       }).then();
     }
   }
+
+  sortData() {
+    if (this.sort) {
+      this.dataSource.sort = this.sort;
+    }
+  }
+
 }
