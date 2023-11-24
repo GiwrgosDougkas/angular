@@ -9,7 +9,7 @@
   <div class="m-3">
     <mat-form-field class="example-full-width">
       <mat-label>Title</mat-label>
-      <input [formControlName]="'title'" matInput>
+      <input [(ngModel)]="bug.title" [formControlName]="'title'" matInput>
       <mat-error *ngIf="myForm.get('title')?.invalid && myForm.get('title')?.dirty">
         Field is required
       </mat-error>
@@ -20,7 +20,7 @@
   <div class="m-3">
     <mat-form-field>
       <mat-label>Description</mat-label>
-      <textarea [formControlName]="'description'" matInput></textarea>
+      <textarea [(ngModel)]="bug.description" [formControlName]="'description'" matInput></textarea>
     </mat-form-field>
   </div>
 
@@ -28,7 +28,7 @@
   <div class="m-3">
     <mat-form-field>
       <mat-label>Priority</mat-label>
-      <mat-select [formControlName]="'priority'">
+      <mat-select [(ngModel)]="bug.priority" [formControlName]="'priority'">
         <mat-option *ngFor="let element of matSelectOption.priority" [value]="element">
           {{element}}
         </mat-option>
@@ -40,7 +40,7 @@
   <div class="m-3">
     <mat-form-field>
       <mat-label>Reporter</mat-label>
-      <mat-select [formControlName]="'reporter'">
+      <mat-select [(ngModel)]="bug.reporter" [formControlName]="'reporter'">
         <mat-option *ngFor="let element of matSelectOption.reporter" [value]="element">
           {{element}}
         </mat-option>
@@ -52,7 +52,7 @@
   <div class="m-3">
     <mat-form-field>
       <mat-label>Status</mat-label>
-      <mat-select [formControlName]="'status'">
+      <mat-select [(ngModel)]="bug.status" [formControlName]="'status'">
         <mat-option *ngFor="let element of matSelectOption.status" [value]="element">
           {{element}}
         </mat-option>

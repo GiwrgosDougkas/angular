@@ -6,11 +6,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {BugDto} from "../DTOs/bug-dto";
 
 @Component({
-  selector: 'app-bug-create',
-  templateUrl: './bug-create.component.html',
-  styleUrls: ['./bug-create.component.scss']
+  selector: 'app-bug-details',
+  templateUrl: './bug-details.html',
+  styleUrls: ['./bug-details.scss']
 })
-export class BugCreateComponent implements OnInit {
+export class BugDetails implements OnInit {
   myForm = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
@@ -26,13 +26,20 @@ export class BugCreateComponent implements OnInit {
   };
 
   private bugId!:string;
+  private isEditing = false;
+  bug: BugDto = new BugDto("","","","","","","",[]);
 
   constructor(private bugsService: BugsService, private route: ActivatedRoute, private router: Router) {
     this.bugId = this.route.snapshot.queryParams['id'];
+    this.isEditing = this.bugId ? true : false;
   }
 
   ngOnInit(): void {
-
+    if(this.isEditing){
+      this.bugsService.getById(this.bugId).subscribe(resp=>{
+        this.bug = resp
+      })
+    }
   }
 
   formSubmit(myForm: FormGroup){
@@ -54,16 +61,21 @@ export class BugCreateComponent implements OnInit {
       second: 'numeric',
     };
     const formattedDate = new Date().toLocaleString('en-US', options);
-    this.bugsService.createBug(new BugDto(this.bugId, title, description, priority, reporter, status, formattedDate, []))
-      .subscribe({
-        next:() => {},
-        error:(err) => {
-          console.log(err);
-        },
-        complete: () => {
-          this.router.navigate(['/bugs']);
-        }
-      });
+    if(this.isEditing){
+      this.bugsService.editBug(this.bug).subscribe(this.responseObserver);
+      return;
+    }
+    this.bugsService.createBug(new BugDto(this.bugsService.nextCreatedId.toString(), title, description, priority, reporter, status, formattedDate, []))
+      .subscribe(this.responseObserver);
   }
 
+  private responseObserver = {
+    next:() => {},
+    error:(err: any) => {
+      console.log(err);
+    },
+    complete: () => {
+      this.router.navigate(['/bugs']);
+    }
+  }
 }

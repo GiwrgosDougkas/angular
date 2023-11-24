@@ -36,6 +36,7 @@ export class BugsComponent implements OnInit {
     this.bugsService.getAll().subscribe({
       next: (value) =>{
         this.dataSource.data = value;
+        this.bugsService.nextCreatedId = this.dataSource.data.length + 1
       },
       error: (onError) => {
         console.error(onError);
@@ -73,5 +74,15 @@ export class BugsComponent implements OnInit {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  redirectToEdit(){
+    if (this.selection.selected.length == 1){
+      this.router.navigate(['create/' ], {
+        queryParams: {
+          id: this.selection.selected[0].id,
+        }
+      }).then();
+    }
   }
 }

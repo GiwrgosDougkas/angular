@@ -8,7 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { BugCreateComponent } from './bug-create/bug-create.component';
+import { BugDetails } from './bug-details/bug-details';
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
@@ -20,7 +20,7 @@ import {MatIconModule} from "@angular/material/icon";
   declarations: [
     AppComponent,
     BugsComponent,
-    BugCreateComponent
+    BugDetails
   ],
   imports: [
     BrowserModule,
